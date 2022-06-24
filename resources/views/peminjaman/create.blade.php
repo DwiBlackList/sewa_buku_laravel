@@ -18,7 +18,7 @@
                     <td>:</td>
                     <td>
                         <select class="form-control" name="id_peminjam" id="">
-                            <option value="">Pilih Judul Buku</option>
+                            <option value="">Pilih Peminjam</option>
                             @foreach($list_data_peminjam as $key => $value)
                                 <option value="{{ $key }}">{{ $value }}</option>
                             @endforeach

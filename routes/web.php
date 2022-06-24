@@ -1,11 +1,33 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataPeminjamController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PeminjamController;
 use App\Models\DataPeminjam;
-use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('auth/login');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
 
 /*
 |--------------------------------------------------------------------------
@@ -111,7 +133,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('index');
 // });
 
-Route::get('/' , [HomeController::class, 'index']);
+// Route::get('/' , [HomeController::class, 'index']);
 
 // Route::get('data_peminjam' , [HomeController::class, 'DataPeminjam']);
 
@@ -144,7 +166,7 @@ Route::get('collection_tojson' , [DataPeminjamController::class , 'CollectionToJ
 
 //job 11
 
-Route::get('peminjaman' , [PeminjamanController::class , 'index']);
+Route::get('peminjaman' , [PeminjamanController::class , 'index'])->name('peminjaman.index');
 Route::get('peminjaman/create' , [PeminjamanController::class , 'create'])->name('peminjaman.create');
 Route::post('peminjaman/store' , [PeminjamanController::class , 'store'])->name('peminjaman.store');
 Route::get('peminjaman/detail_peminjam/{id}' , [PeminjamanController::class , 'detail_peminjam'])->name('peminjaman.detail_peminjam');
